@@ -1,7 +1,9 @@
 import { Task } from "./task.js";
+import { assignProjectID } from "./assignID.js";
 
 export class Project {
   constructor(title) {
+    this.id = assignProjectID();
     this.title = title;
   }
 
