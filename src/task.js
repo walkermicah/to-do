@@ -1,20 +1,14 @@
-import { assignTaskID, assignProjectID } from "./assignID";
+import { assignTaskID } from "./assignID.js";
 
 export class Task {
-  constructor(project, title, description, dueDate, notes, priority, complete) {
+  constructor(title, description, dueDate, notes, priority, complete) {
     this.id = assignTaskID();
-    this.project = project;
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.notes = notes;
     this.priority = priority;
     this.complete = complete;
-  }
-
-  editProject(newProject) {
-    this.project = newProject;
-    return this.project;
   }
 
   editTitle(newTitle) {
