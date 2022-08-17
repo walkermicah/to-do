@@ -8,14 +8,18 @@ export class ProjectDirectory {
     this.projects.push(newProject);
   }
 
-  getProject(projectID) {
+  getProjectByID(projectID) {
     const project = this.projects.find((proj) => proj.id === projectID);
     return project;
   }
 
+  getProjectIndex(project) {
+    const index = this.projects.indexOf(project);
+    return index;
+  }
+
   deleteProject(projectID) {
-    const projectToDelete = this.getProject(projectID);
-    const index = this.projects.indexOf(projectToDelete);
-    this.projects.splice(index, 1);
+    const indexToDelete = this.getProjectIndex(this.getProjectByID(projectID));
+    this.projects.splice(indexToDelete, 1);
   }
 }
