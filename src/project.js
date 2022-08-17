@@ -9,9 +9,14 @@ export class Project {
 
   tasks = [];
 
-  editTitle(newTitle) {
-    this.title = newTitle;
-    return this.title;
+  getTaskByID(taskID) {
+    const task = this.tasks.find((t) => t.id === taskID);
+    return task;
+  }
+
+  getTaskIndex(task) {
+    const index = this.tasks.indexOf(task);
+    return index;
   }
 
   addTask(project, title, description, dueDate, notes, priority, complete) {
@@ -28,8 +33,13 @@ export class Project {
   }
 
   deleteTask(taskID) {
-    const taskToDelete = this.tasks.find((task) => task.id === taskID);
-    const index = this.tasks.indexOf(taskToDelete);
-    this.tasks.splice(index, 1);
+    const indexToDelete = this.getTaskIndex(this.getTaskByID(taskID));
+    this.tasks.splice(indexToDelete, 1);
   }
+
+  // deleteTask(taskID) {
+  //   const taskToDelete = this.getTaskByID(taskID);
+  //   const index = this.tasks.indexOf(taskToDelete);
+  //   this.tasks.splice(index, 1);
+  // }
 }
