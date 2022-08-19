@@ -1,7 +1,7 @@
 const projectBar = document.querySelector(".projects");
 const projectsHeading = document.querySelector(".projects-heading");
 const newProjectForm = document.querySelector(".new-project-form");
-const newProjectName = document.querySelector(".project-form-input");
+const newProjectName = document.querySelector(".new-project-form-input");
 
 export class ProjectUI {
   //add button to project tab (to edit name or delete project)
