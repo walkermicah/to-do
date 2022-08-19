@@ -9,13 +9,18 @@ export class ProjectDirectory {
   }
 
   getProjectByID(projectID) {
-    const project = this.projects.find((proj) => proj.id === projectID);
+    const project = this.projects.find((proj) => proj.id == projectID);
     return project;
   }
 
   getProjectIndex(project) {
     const index = this.projects.indexOf(project);
     return index;
+  }
+
+  editProjectName(projectID, newTitle) {
+    const indexToEdit = this.getProjectIndex(this.getProjectByID(projectID));
+    this.projects[indexToEdit].title = newTitle;
   }
 
   deleteProject(projectID) {
