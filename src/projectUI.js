@@ -7,18 +7,66 @@ export class ProjectUI {
   //add button to project tab (to edit name or delete project)
   static appendBtn(el, classList, name) {
     const btn = el.appendChild(document.createElement("button"));
-    // btn.classList.add(`${classList}`);
     btn.innerHTML = `<img src="../src/img/${name}.svg" class="${classList} icon-small"></img>`;
+  }
+
+  //add color indicator to each project tab
+  static addColorCoding(directory, el, color) {
+    color.classList.add("project-color");
+    const projectColor = directory.getProjectByID(
+      el.getAttribute("data-id")
+    ).color;
+    color.style.backgroundColor = `${projectColor}`;
+  }
+
+  //edit project color
+  static changeProjectColor(e, directory) {
+    let newColor;
+    const project = directory.getProjectByID(
+      e.target.closest(".project-tab").dataset.id
+    );
+
+    if (project.color === "#00b4b4") {
+      newColor = "#1af045";
+    }
+    if (project.color === "#1af045") {
+      newColor = "#a51af0";
+    }
+    if (project.color === "#a51af0") {
+      newColor = "#f01a9a";
+    }
+    if (project.color === "#f01a9a") {
+      newColor = "#f0771a";
+    }
+    if (project.color === "#f0771a") {
+      newColor = "#f0de1a";
+    }
+    if (project.color === "#f0de1a") {
+      newColor = "#00b4b4";
+    }
+
+    project.color = newColor;
+    this.loadProjects(directory);
   }
 
   //display project tabs
   static loadProjects(directory) {
     this.clearProjects();
     directory.projects.forEach((project) => {
+      //create tab
       const tab = projectBar.appendChild(document.createElement("div"));
       tab.classList.add("project-tab");
-      tab.textContent = project.title;
+
+      //add color indicator
+      const color = tab.appendChild(document.createElement("div"));
+
+      //add project title
+      const projectTitle = tab.appendChild(document.createElement("div"));
+      projectTitle.textContent = project.title;
       tab.setAttribute("data-id", project.id);
+
+      //add color coding
+      this.addColorCoding(directory, tab, color);
 
       //append edit button to project tab
       this.appendBtn(tab, "edit-project-form-btn", "edit");
