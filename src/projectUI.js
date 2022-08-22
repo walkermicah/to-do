@@ -61,8 +61,9 @@ export class ProjectUI {
       const color = tab.appendChild(document.createElement("div"));
 
       //add project title
-      const projectTitle = tab.appendChild(document.createElement("div"));
-      projectTitle.textContent = project.title;
+      const projectName = tab.appendChild(document.createElement("div"));
+      projectName.textContent = project.title;
+      projectName.classList.add("project-name");
       tab.setAttribute("data-id", project.id);
 
       //add color coding
