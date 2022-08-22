@@ -67,7 +67,7 @@ input:focus {
 /* PROJECTS */
 .projects {
   background-color: rgb(255, 255, 255);
-  font-size: 2.5rem;
+  font-size: 2rem;
   grid-area: projects;
 
   display: grid;
@@ -85,10 +85,12 @@ input:focus {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  font-size: 2.5rem;
 }
 
 .project-tab {
   height: 6rem;
+  width: 25rem;
   border-radius: 3px;
   padding: 1rem;
   color: white;
@@ -96,7 +98,8 @@ input:focus {
 
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  gap: 1rem;
+  justify-content: space-between;
 }
 
 .project-color {
@@ -104,6 +107,10 @@ input:focus {
   height: 1rem;
   width: 1rem;
   cursor: pointer;
+}
+
+.project-name {
+  margin-right: auto;
 }
 
 .new-project-form,
