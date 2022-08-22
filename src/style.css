@@ -65,13 +65,22 @@ input:focus {
 }
 
 /* PROJECTS */
-.projects {
+.projects-bar {
   background-color: rgb(255, 255, 255);
   font-size: 2rem;
   grid-area: projects;
 
   display: grid;
   gap: 2rem;
+
+  max-height: 85vh;
+}
+
+.projects {
+  display: grid;
+  gap: 1rem;
+
+  overflow-y: scroll;
 }
 
 .projects-main-tab {
