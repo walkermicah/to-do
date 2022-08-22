@@ -1,14 +1,14 @@
 const projectBar = document.querySelector(".projects");
-const projectsHeading = document.querySelector(".projects-heading");
+const projectsMainTab = document.querySelector(".projects-main-tab");
 const newProjectForm = document.querySelector(".new-project-form");
 const newProjectName = document.querySelector(".new-project-form-input");
 
 export class ProjectUI {
   //add button to project tab (to edit name or delete project)
-  static appendBtn(el, classList, textContent) {
+  static appendBtn(el, classList, name) {
     const btn = el.appendChild(document.createElement("button"));
-    btn.classList.add(`${classList}`);
-    btn.textContent = `${textContent}`;
+    // btn.classList.add(`${classList}`);
+    btn.innerHTML = `<img src="../src/img/${name}.svg" class="${classList} icon-small"></img>`;
   }
 
   //display project tabs
@@ -21,10 +21,10 @@ export class ProjectUI {
       tab.setAttribute("data-id", project.id);
 
       //append edit button to project tab
-      this.appendBtn(tab, "edit-project-form-btn", "Edit");
+      this.appendBtn(tab, "edit-project-form-btn", "edit");
 
       //append delete button to project tab
-      this.appendBtn(tab, "delete-project-btn", "Delete");
+      this.appendBtn(tab, "delete-project-btn", "delete");
     });
   }
 
@@ -37,7 +37,7 @@ export class ProjectUI {
 
   //display form to add a new project
   static showNewProjectForm() {
-    projectsHeading.classList.add("hidden");
+    projectsMainTab.classList.add("hidden");
     newProjectForm.classList.remove("hidden");
 
     const input = document.querySelector(".new-project-form-input");
@@ -46,7 +46,7 @@ export class ProjectUI {
 
   //hide form to add new project
   static hideNewProjectForm() {
-    projectsHeading.classList.remove("hidden");
+    projectsMainTab.classList.remove("hidden");
     newProjectForm.classList.add("hidden");
   }
 
@@ -67,7 +67,7 @@ export class ProjectUI {
   //show form to edit project name
   static showEditProjectForm(e, directory) {
     const projectTitle = directory.getProjectByID(
-      e.target.parentNode.dataset.id
+      e.target.closest(".project-tab").dataset.id
     ).title;
 
     const html = `<form action="#" class="edit-project-form">
@@ -78,7 +78,7 @@ export class ProjectUI {
       <button class="edit-project-name-btn">&plus;</button>
       <button class="edit-project-exit-btn">&#10005;</button>
     </form>`;
-    e.target.parentNode.innerHTML = html;
+    e.target.closest(".project-tab").innerHTML = html;
 
     const input = document.querySelector(".edit-project-form-input");
     input.value = projectTitle;
@@ -104,7 +104,7 @@ export class ProjectUI {
 
   //delete project
   static deleteProject(e, directory) {
-    const id = e.target.parentNode.dataset.id;
+    const id = e.target.closest(".project-tab").dataset.id;
     directory.deleteProject(id);
     this.loadProjects(directory);
   }
