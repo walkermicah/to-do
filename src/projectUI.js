@@ -79,7 +79,7 @@ export class ProjectUI {
 
   //clear project tabs
   static clearProjects() {
-    while (projectBar.childNodes.length > 1) {
+    while (projectBar.childNodes.length > 0) {
       projectBar.removeChild(projectBar.lastChild);
     }
   }
