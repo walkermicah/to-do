@@ -1,0 +1,135 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --main-color: rgb(255, 255, 255);
+  --background-color: rgb(0, 0, 0);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.app {
+  height: 85vh;
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 25rem 1fr;
+  grid-template-rows: 6rem min-content;
+  grid-template-areas:
+    "projects settings"
+    "projects tasks";
+  column-gap: 4rem;
+  row-gap: 2rem;
+}
+
+button {
+  border-style: none;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+
+.icon-small {
+  height: 2rem;
+  width: 2rem;
+}
+
+.icon-large {
+  height: 3rem;
+  width: 3rem;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  border-bottom: 4px solid white;
+}
+
+/* PROJECTS */
+.projects {
+  background-color: rgb(255, 255, 255);
+  font-size: 2.5rem;
+  grid-area: projects;
+
+  display: grid;
+  gap: 2rem;
+}
+
+.projects-main-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 3rem;
+}
+
+.projects-heading {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.project-tab {
+  height: 6rem;
+  border-radius: 3px;
+  padding: 1rem;
+  color: white;
+  background-color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.new-project-form,
+.edit-project-form {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2rem 2rem;
+  gap: 0.5rem;
+}
+
+.new-project-form-input,
+.edit-project-form-input {
+  align-self: center;
+  padding: 0.5rem;
+}
+
+.new-project-btn,
+.submit-new-project-btn,
+.edit-project-name-btn {
+  border: 1px solid white;
+  border-radius: 3px;
+  height: 2rem;
+  width: 2rem;
+  align-self: center;
+}
+
+.new-project-exit-btn,
+.edit-project-exit-btn {
+  align-self: start;
+  justify-self: end;
+}
+
+.hidden {
+  display: none;
+}
