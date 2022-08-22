@@ -1,3 +1,8 @@
+//ADD ACTIVE TAB CLASS
+//Function in projectUI to switch active class
+//Start with active tab as default project
+//event listener- click on tab, switch class
+
 import "./style.css";
 import { ProjectDirectory } from "./projectDirectory.js";
 import { ProjectUI } from "./projectUI.js";
@@ -5,6 +10,12 @@ import { ProjectUI } from "./projectUI.js";
 ///////INITIALIZE DIRECTORY AND DEFAULT PROJECT
 const directory = new ProjectDirectory();
 directory.addProject("My Project");
+directory.addProject("Project 1");
+directory.addProject("Project 2");
+directory.addProject("Project 3");
+directory.addProject("Project 4");
+directory.addProject("Project 5");
+directory.addProject("Project 6");
 ProjectUI.loadProjects(directory);
 
 ///////EVENT LISTENERS
@@ -37,6 +48,10 @@ document.addEventListener("click", function (e) {
   //delete project
   if (e.target.classList.contains("delete-project-btn")) {
     ProjectUI.deleteProject(e, directory);
+  }
+  //edit project color
+  if (e.target.classList.contains("project-color")) {
+    ProjectUI.changeProjectColor(e, directory);
   }
 });
 
