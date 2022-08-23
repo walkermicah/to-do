@@ -68,17 +68,12 @@ button {
 }
 
 input {
-  background-color: black;
   border: 1px solid white;
-  color: white;
 }
 
 input:focus {
-  outline: none;
-  border: 1px solid white;
-  background-color: black;
-  color: white;
-  border-bottom: 4px solid white;
+  outline: 1px solid rgb(255, 255, 255);
+  border-bottom: 4px solid rgb(0, 0, 0);
 }
 
 /* PROJECTS */
@@ -208,26 +203,20 @@ input:focus {
   padding: 1rem;
   height: 100%;
   display: grid;
-  grid-template-columns: 20rem 10rem 30rem 10rem min-content;
+  grid-template-columns: 1fr 1fr 1fr min-content min-content;
   align-items: center;
   justify-items: center;
+  gap: 2rem;
 }
 
 .task-name-input,
-.task-notes-input {
+.task-notes-input,
+.task-date-input {
   padding: 0.5rem;
 }
 
 .task-notes-input {
   width: 90%;
-}
-
-.task-date-input-btn {
-}
-
-.task-date-input-icon {
-  height: 3.5rem;
-  width: 3.5rem;
 }
 
 .new-task-submit-btn {
@@ -240,4 +229,17 @@ input:focus {
 
 .hidden {
   display: none;
+}
+
+/* Date picker */
+[type="date"] {
+  background: rgb(255, 255, 255)
+    url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+    97% 50% no-repeat;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
 }
