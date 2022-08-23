@@ -21,31 +21,8 @@ export class ProjectUI {
 
   //edit project color
   static changeProjectColor(e, directory) {
-    let newColor;
-    const project = directory.getProjectByID(
-      e.target.closest(".project-tab").dataset.id
-    );
-
-    if (project.color === "#00b4b4") {
-      newColor = "#1af045";
-    }
-    if (project.color === "#1af045") {
-      newColor = "#a51af0";
-    }
-    if (project.color === "#a51af0") {
-      newColor = "#f01a9a";
-    }
-    if (project.color === "#f01a9a") {
-      newColor = "#f0771a";
-    }
-    if (project.color === "#f0771a") {
-      newColor = "#f0de1a";
-    }
-    if (project.color === "#f0de1a") {
-      newColor = "#00b4b4";
-    }
-
-    project.color = newColor;
+    const projectID = e.target.closest(".project-tab").dataset.id;
+    directory.editProjectColor(projectID);
     this.loadProjects(directory);
   }
 
