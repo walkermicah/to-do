@@ -18,10 +18,10 @@
         <div class="projects-bar">
           <div class="project-tab">
             <div class="projects-main-tab">
-                <span class="projects-heading">
-                  <img src="../src/img/folder.svg" class="icon-large"></img>
-                  PROJECTS
-                </span>
+              <div class="projects-heading">
+                <img inline src="src/img/folder.svg" class="icon-large" />
+                PROJECTS
+              </div>
               <button class="new-project-btn">&plus;</button>
             </div>
 
@@ -37,31 +37,43 @@
           </div>
           <div class="projects"></div>
         </div>
-      <div class="taskbar">
-        <div class="taskbar-menu">
-          <button class="taskbar-form-btn">&plus;</button>
+        <div class="taskbar">
+          <div class="taskbar-menu">
+            <button class="taskbar-form-btn">&plus;</button>
 
-          <p class="taskbar-title">TASKS</p>
+            <p class="taskbar-title">TASKS</p>
 
-          <img src="../src/img/date.svg" class="taskbar-date-icon icon-xl"></img>
+            <img
+              inline
+              src="src/img/date.svg"
+              class="taskbar-date-icon icon-xl"
+            />
 
-          <img src="../src/img/notes.svg" class="taskbar-notes-icon icon-xl"></img>
+            <img
+              inline
+              src="src/img/notes.svg"
+              class="taskbar-notes-icon icon-xl"
+            />
 
-          <div></div>
+            <div></div>
+          </div>
+
+          <div class="taskbar-form hidden">
+            <input
+              type="text"
+              class="task-name-input"
+              placeholder="Task name"
+            />
+
+            <input type="text" class="task-notes-input" placeholder="Notes" />
+
+            <input type="date" name="date" class="task-date-input" id="date" />
+
+            <button class="new-task-submit-btn">&plus;</button>
+
+            <button class="new-task-exit-btn">&#10005;</button>
+          </div>
         </div>
-
-        <div class="taskbar-form hidden">
-          <input type="text" class="task-name-input" placeholder="Task name">
-
-          <input type="text" class="task-notes-input" placeholder="Notes">
-
-          <input type="date" name="date" class="task-date-input" id="date">
-
-          <button class="new-task-submit-btn">&plus;</button>
-
-          <button class="new-task-exit-btn">&#10005;</button>
-        </div>
-      </div>
       </div>
     </div>
   </body>
