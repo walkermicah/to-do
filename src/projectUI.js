@@ -7,7 +7,7 @@ export class ProjectUI {
   //add button to project tab (to edit name or delete project)
   static appendBtn(el, classList, name) {
     const btn = el.appendChild(document.createElement("button"));
-    btn.innerHTML = `<img src="../src/img/${name}.svg" class="${classList} icon-small"></img>`;
+    btn.innerHTML = `<img src="img/${name}.svg" class="${classList} icon-small"/>`;
   }
 
   //add color indicator to each project tab
@@ -65,9 +65,7 @@ export class ProjectUI {
   static showNewProjectForm() {
     projectsMainTab.classList.add("hidden");
     newProjectForm.classList.remove("hidden");
-
-    const input = document.querySelector(".new-project-form-input");
-    input.focus();
+    newProjectName.focus();
   }
 
   //hide form to add new project
@@ -135,7 +133,3 @@ export class ProjectUI {
     this.loadProjects(directory);
   }
 }
-
-// export class TaskBarUI {}
-
-// export class TaskUI {}
