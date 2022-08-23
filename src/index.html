@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300&display=swap"
       rel="stylesheet"
     />
-    <title>To-Do App</title>
+    <title>To-Do List</title>
   </head>
   <body>
     <div class="container">
@@ -37,6 +37,31 @@
           </div>
           <div class="projects"></div>
         </div>
+      <div class="taskbar">
+        <div class="taskbar-menu hidden">
+          <button class="taskbar-form-btn">&plus;</button>
+
+          <p class="taskbar-title">TASKS</p>
+
+          <img src="../src/img/date.svg" class="taskbar-date-icon icon-xlarge"></img>
+
+          <img src="../src/img/notes.svg" class="taskbar-notes-icon icon-xlarge"></img>
+
+          <div></div>
+        </div>
+
+        <div class="taskbar-form">
+          <input type="text" class="task-name-input">
+
+          <button class="task-date-input">Date</button>
+
+          <input type="text" class="task-notes-input">
+
+          <button class="new-task-submit-btn">&plus;</button>
+
+          <button class="new-task-exit-btn">&#10005;</button>
+        </div>
+      </div>
       </div>
     </div>
   </body>
