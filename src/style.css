@@ -33,10 +33,11 @@ body {
   grid-template-columns: 25rem 1fr;
   grid-template-rows: 6rem min-content;
   grid-template-areas:
-    "projects settings"
+    "projects taskbar"
     "projects tasks";
   column-gap: 4rem;
   row-gap: 2rem;
+  cursor: default;
 }
 
 button {
@@ -54,6 +55,22 @@ button {
 .icon-large {
   height: 3rem;
   width: 3rem;
+}
+
+.icon-xl {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.icon-xxl {
+  height: 4rem;
+  width: 4rem;
+}
+
+input {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
 }
 
 input:focus {
@@ -95,6 +112,7 @@ input:focus {
   gap: 0.5rem;
   align-items: center;
   font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .project-tab {
@@ -149,6 +167,73 @@ input:focus {
 
 .new-project-exit-btn,
 .edit-project-exit-btn {
+  align-self: start;
+  justify-self: end;
+}
+
+/* TASK BAR */
+.taskbar {
+  grid-area: taskbar;
+  height: 6rem;
+  width: 100%;
+  background-color: black;
+  color: white;
+  border-radius: 3px;
+}
+
+.taskbar-menu {
+  font-size: 2.5rem;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 10rem 18rem 12rem 1fr 5rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.taskbar-form-btn,
+.new-task-submit-btn {
+  border: 1px solid white;
+  border-radius: 3px;
+  height: 4rem;
+  width: 4rem;
+  font-size: 3rem;
+}
+
+.taskbar-title {
+  font-weight: bold;
+  justify-self: start;
+}
+
+.taskbar-form {
+  padding: 1rem;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20rem 10rem 30rem 10rem min-content;
+  align-items: center;
+  justify-items: center;
+}
+
+.task-name-input,
+.task-notes-input {
+  padding: 0.5rem;
+}
+
+.task-notes-input {
+  width: 90%;
+}
+
+.task-date-input-btn {
+}
+
+.task-date-input-icon {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.new-task-submit-btn {
+}
+
+.new-task-exit-btn {
   align-self: start;
   justify-self: end;
 }
