@@ -1,3 +1,6 @@
+import Edit from "./img/edit.svg";
+import Delete from "./img/delete.svg";
+
 const projectBar = document.querySelector(".projects");
 const projectsMainTab = document.querySelector(".projects-main-tab");
 const newProjectForm = document.querySelector(".new-project-form");
@@ -5,9 +8,12 @@ const newProjectName = document.querySelector(".new-project-form-input");
 
 export class ProjectUI {
   //add button to project tab (to edit name or delete project)
-  static appendBtn(el, classList, name) {
+  static appendBtn(el, imgSrc, classList) {
     const btn = el.appendChild(document.createElement("button"));
-    btn.innerHTML = `<img src="img/${name}.svg" class="${classList} icon-small"/>`;
+    const img = document.createElement("img");
+    img.src = imgSrc;
+    btn.appendChild(img);
+    img.classList.add(`${classList}`, "icon-small");
   }
 
   //add color indicator to each project tab
@@ -47,10 +53,10 @@ export class ProjectUI {
       this.addColorCoding(directory, tab, color);
 
       //append edit button to project tab
-      this.appendBtn(tab, "edit-project-form-btn", "edit");
+      this.appendBtn(tab, Edit, "edit-project-form-btn");
 
       //append delete button to project tab
-      this.appendBtn(tab, "delete-project-btn", "delete");
+      this.appendBtn(tab, Delete, "delete-project-form");
     });
   }
 
