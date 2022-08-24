@@ -38,10 +38,4 @@ export class Project {
     const indexToDelete = this.getTaskIndex(this.getTaskByID(taskID));
     this.tasks.splice(indexToDelete, 1);
   }
-
-  // deleteTask(taskID) {
-  //   const taskToDelete = this.getTaskByID(taskID);
-  //   const index = this.tasks.indexOf(taskToDelete);
-  //   this.tasks.splice(index, 1);
-  // }
 }
