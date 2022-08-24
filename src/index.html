@@ -58,7 +58,18 @@
             <div></div>
           </div>
 
-          <div class="taskbar-form hidden">
+          <form action="#" class="taskbar-form hidden">
+            <button class="new-task-submit-btn">&plus;</button>
+
+            <div class="task-project-input">
+              <nav>
+                <label for="touch"><span>Project</span></label>
+                <input type="checkbox" id="touch" />
+
+                <ul class="slide"></ul>
+              </nav>
+            </div>
+
             <input
               type="text"
               class="task-name-input"
@@ -69,10 +80,8 @@
 
             <input type="date" name="date" class="task-date-input" id="date" />
 
-            <button class="new-task-submit-btn">&plus;</button>
-
             <button class="new-task-exit-btn">&#10005;</button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
