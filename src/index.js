@@ -5,6 +5,7 @@ import { TaskUI } from "./taskUI.js";
 
 ///////INITIALIZE DIRECTORY AND DEFAULT PROJECT
 const directory = new ProjectDirectory();
+
 // directory.addProject("My Project");
 directory.addProject("Project 1");
 directory.addProject("Project 2");
@@ -31,7 +32,7 @@ document.addEventListener("click", function (e) {
   }
   //add new project to directory
   if (e.target.classList.contains("submit-new-project-btn")) {
-    ProjectUI.createNewProject(directory);
+    ProjectUI.createNewProject(e, directory);
   }
   //exit form to create new project
   if (e.target.classList.contains("new-project-exit-btn")) {
@@ -58,22 +59,29 @@ document.addEventListener("click", function (e) {
     ProjectUI.changeProjectColor(e, directory);
   }
   //display tasks when project tab is clicked
-  if (e.target.closest(".project-tab")) {
+  if (
+    e.target.closest(".project-tab") &&
+    !e.target.classList.contains("delete-project-btn")
+  ) {
     TaskUI.loadTasks(e, directory);
   }
 
   /////TASK BAR
   //show form to add new task
   if (e.target.classList.contains("taskbar-form-btn")) {
-    TaskUI.showNewTaskForm(directory);
+    TaskUI.showNewTaskForm(directory, e);
   }
   //submit new task
   if (e.target.classList.contains("new-task-submit-btn")) {
-    TaskUI.submitNewTask(e);
+    TaskUI.submitNewTask(e, directory);
   }
   //exit form to add new task
   if (e.target.classList.contains("new-task-exit-btn")) {
     TaskUI.exitNewTaskForm(e);
+  }
+  //select project from drop down
+  if (e.target.closest("li")) {
+    TaskUI.selectProject(e, directory);
   }
 });
 
