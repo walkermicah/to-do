@@ -1,13 +1,13 @@
 import { assignTaskID } from "./assignID.js";
 
 export class Task {
-  constructor(title, description, dueDate, notes, priority, complete) {
+  constructor(title, notes, date) {
     this.id = assignTaskID();
     this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
     this.notes = notes;
-    this.priority = priority;
-    this.complete = complete;
+    this.date = date;
   }
+
+  important = false;
+  complete = false;
 }
