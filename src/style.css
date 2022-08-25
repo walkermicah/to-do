@@ -31,10 +31,7 @@ body {
   width: 80vw;
   display: grid;
   grid-template-columns: 25rem 1fr;
-  grid-template-rows: 6rem min-content;
-  grid-template-areas:
-    "projects taskbar"
-    "projects tasks";
+  grid-template-areas: "projects tasks";
   column-gap: 4rem;
   row-gap: 2rem;
   cursor: default;
@@ -45,6 +42,11 @@ button {
   color: white;
   background-color: black;
   cursor: pointer;
+}
+
+.icon-xs {
+  height: 1rem;
+  width: 1rem;
 }
 
 .icon-small {
@@ -84,6 +86,7 @@ input:focus {
 
   display: grid;
   gap: 2rem;
+  align-content: start;
 
   max-height: 85vh;
 }
@@ -91,6 +94,7 @@ input:focus {
 .projects {
   display: grid;
   gap: 1rem;
+  align-content: start;
 
   overflow-y: scroll;
 }
@@ -110,7 +114,8 @@ input:focus {
   font-weight: bold;
 }
 
-.project-tab {
+.project-tab,
+.project-header {
   height: 6rem;
   width: 25rem;
   border-radius: 3px;
@@ -167,22 +172,35 @@ input:focus {
 }
 
 /* TASK BAR */
+.tasks {
+  grid-area: tasks;
+  position: relative;
+
+  display: grid;
+  grid-template-rows: 6rem min-content;
+  gap: 2rem;
+
+  max-height: 85vh;
+  overflow-y: scroll;
+}
+
 .taskbar {
-  grid-area: taskbar;
-  height: 6rem;
   width: 100%;
   background-color: black;
   color: white;
   border-radius: 3px;
+  position: sticky;
+  top: 0;
 }
 
 .taskbar-menu {
   font-size: 2.5rem;
   height: 100%;
   display: grid;
-  grid-template-columns: 10rem 18rem 12rem 1fr 5rem;
+  grid-template-columns: 11rem 18rem 1fr 12rem 5rem;
   align-items: center;
-  justify-items: center;
+  justify-items: start;
+  padding: 1rem;
 }
 
 .taskbar-form-btn,
@@ -231,16 +249,11 @@ input:focus {
   justify-self: end;
 }
 
-.hidden {
-  display: none;
-}
-
 /* Project drop-down */
 
 .task-project-input li a {
   text-decoration: none;
   color: #000000;
-  font-size: 1rem;
   font-size: 1.3rem;
 }
 
@@ -312,4 +325,102 @@ input:focus {
 }
 [type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
+}
+
+/* TASK LIST */
+.tasklist {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.task {
+  background-color: black;
+  color: white;
+  height: 6rem;
+  border-radius: 3px;
+  padding: 1rem;
+  font-size: 2rem;
+
+  display: grid;
+  align-items: center;
+  grid-template-columns: 5rem 5rem 18rem 1fr 12rem 2.5rem 2.5rem;
+}
+
+/* task checkbox */
+.task-checkbox {
+  margin-bottom: 2.5rem;
+  align-self: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.task-checkbox input {
+  display: none;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid white;
+}
+
+.task-checkbox:hover input ~ .checkmark {
+  background-color: rgb(41, 40, 40);
+}
+
+.task-checkbox input:checked ~ .checkmark {
+  background-color: #c8f8b7;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.task-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.task-checkbox .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid rgb(0, 0, 0);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* task star */
+.star {
+  visibility: hidden;
+  font-size: 30px;
+  cursor: pointer;
+  margin-bottom: 2.5rem;
+}
+.star:before {
+  visibility: visible;
+  content: "\2606";
+  position: absolute;
+  color: rgb(255, 255, 255);
+  opacity: 0.7;
+}
+.star:checked:before {
+  content: "\2605";
+  position: absolute;
+  color: rgb(255, 246, 185);
+  opacity: 1;
+}
+
+/* //// */
+.hidden {
+  display: none;
 }
