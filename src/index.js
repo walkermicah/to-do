@@ -1,21 +1,25 @@
-//ADD ACTIVE TAB CLASS
-//Function in projectUI to switch active class
-//Start with active tab as default project
-//event listener- click on tab, switch class
-
 import "./style.css";
 import { ProjectDirectory } from "./projectDirectory.js";
 import { ProjectUI } from "./projectUI.js";
+import { TaskUI } from "./taskUI.js";
 
 ///////INITIALIZE DIRECTORY AND DEFAULT PROJECT
 const directory = new ProjectDirectory();
-directory.addProject("My Project");
+// directory.addProject("My Project");
 directory.addProject("Project 1");
 directory.addProject("Project 2");
 directory.addProject("Project 3");
 directory.addProject("Project 4");
 directory.addProject("Project 5");
 directory.addProject("Project 6");
+directory.getProjectByID(1).addTask("Task 1", "Note 1", "09/23/22");
+directory.getProjectByID(1).addTask("Task 2", "Note 2", "09/25/22");
+directory.getProjectByID(2).addTask("New Task", "Notes", "10/30/22");
+directory.getProjectByID(3).addTask("Task A", "Note A...", "01/01/23");
+directory.getProjectByID(3).addTask("Task B", "Note B...", "01/22/23");
+directory.getProjectByID(4).addTask("Task B", "Note B...", "01/22/23");
+directory.getProjectByID(5).addTask("Task B", "Note B...", "01/22/23");
+directory.getProjectByID(6).addTask("Task B", "Note B...", "01/22/23");
 ProjectUI.loadProjects(directory);
 
 ///////EVENT LISTENERS
@@ -23,7 +27,7 @@ document.addEventListener("click", function (e) {
   /////PROJECTS BAR
   //show form to create new project
   if (e.target.classList.contains("new-project-btn")) {
-    ProjectUI.showNewProjectForm();
+    ProjectUI.showNewProjectForm(e);
   }
   //add new project to directory
   if (e.target.classList.contains("submit-new-project-btn")) {
@@ -52,6 +56,24 @@ document.addEventListener("click", function (e) {
   //edit project color
   if (e.target.classList.contains("project-color")) {
     ProjectUI.changeProjectColor(e, directory);
+  }
+  //display tasks when project tab is clicked
+  if (e.target.closest(".project-tab")) {
+    TaskUI.loadTasks(e, directory);
+  }
+
+  /////TASK BAR
+  //show form to add new task
+  if (e.target.classList.contains("taskbar-form-btn")) {
+    TaskUI.showNewTaskForm(directory);
+  }
+  //submit new task
+  if (e.target.classList.contains("new-task-submit-btn")) {
+    TaskUI.submitNewTask(e);
+  }
+  //exit form to add new task
+  if (e.target.classList.contains("new-task-exit-btn")) {
+    TaskUI.exitNewTaskForm(e);
   }
 });
 
