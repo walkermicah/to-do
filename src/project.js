@@ -21,16 +21,8 @@ export class Project {
     return index;
   }
 
-  addTask(project, title, description, dueDate, notes, priority, complete) {
-    const newTask = new Task(
-      project,
-      title,
-      description,
-      dueDate,
-      notes,
-      priority,
-      complete
-    );
+  addTask(title, notes, date) {
+    const newTask = new Task(title, notes, date);
     this.tasks.push(newTask);
   }
 
