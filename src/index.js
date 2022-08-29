@@ -1,14 +1,12 @@
 import "./style.css";
-import { ProjectDirectory } from "./projectDirectory.js";
+import { init, directory } from "./init.js";
 import { ProjectUI } from "./projectUI.js";
 import { TaskUI } from "./taskUI.js";
 
-///////INITIALIZE DIRECTORY AND DEFAULT PROJECT
-const directory = new ProjectDirectory();
-directory.addProject("My Project");
+///////Initialize directory and add default project
+init();
 
-export let active = { project: directory.projects[0] };
-
+//for testing
 directory.addProject("Project 1");
 directory.addProject("Project 2");
 directory.addProject("Project 3");
@@ -34,7 +32,7 @@ document.addEventListener("click", function (e) {
   }
   //add new project to directory
   if (e.target.classList.contains("submit-new-project-btn")) {
-    ProjectUI.createNewProject(e, directory);
+    ProjectUI.createNewProject(e);
   }
   //exit form to create new project
   if (e.target.classList.contains("new-project-exit-btn")) {
@@ -42,30 +40,30 @@ document.addEventListener("click", function (e) {
   }
   //show form to edit project name
   if (e.target.classList.contains("edit-project-form-btn")) {
-    ProjectUI.showEditProjectForm(e, directory);
+    ProjectUI.showEditProjectForm(e);
   }
   //edit project name
   if (e.target.classList.contains("edit-project-name-btn")) {
-    ProjectUI.editProjectName(e, directory);
+    ProjectUI.editProjectName(e);
   }
   //exit form to rename project
   if (e.target.classList.contains("edit-project-exit-btn")) {
-    ProjectUI.loadProjects(directory);
+    ProjectUI.loadProjects();
   }
   //delete project
   if (e.target.classList.contains("delete-project-btn")) {
-    ProjectUI.deleteProject(e, directory);
+    ProjectUI.deleteProject(e);
   }
   //edit project color
   if (e.target.classList.contains("project-color")) {
-    ProjectUI.changeProjectColor(e, directory);
+    ProjectUI.changeProjectColor(e);
   }
   //display tasks when project tab is clicked
   if (
     e.target.closest(".project-tab") &&
     !e.target.classList.contains("delete-project-btn")
   ) {
-    TaskUI.loadTasks(e, directory);
+    TaskUI.changeActiveProject(e);
   }
 
   /////TASK BAR
@@ -83,7 +81,7 @@ document.addEventListener("click", function (e) {
   }
   //select project from drop down
   if (e.target.closest("li")) {
-    TaskUI.selectProject(e, directory);
+    TaskUI.selectProject(e);
   }
 
   // TASK BUTTONS

@@ -1,15 +1,29 @@
 import { Task } from "./task.js";
-import { assignProjectID } from "./assignID.js";
-import { assignProjectColor } from "./assignColor.js";
+import { directory } from "./init.js";
 
 export class Project {
   constructor(title) {
-    this.id = assignProjectID();
-    this.color = assignProjectColor();
+    this.id = directory.assignProjectID();
+    this.color = directory.assignProjectColor();
     this.title = title;
   }
 
   tasks = [];
+  taskID = 0;
+
+  editTitle(newTitle) {
+    this.title = newTitle;
+  }
+
+  addTask(title, notes, date) {
+    const newTask = new Task(title, notes, date);
+    this.tasks.push(newTask);
+  }
+
+  assignTaskID() {
+    this.taskID++;
+    return this.taskID;
+  }
 
   getTaskByID(taskID) {
     const task = this.tasks.find((t) => t.id == taskID);
@@ -19,11 +33,6 @@ export class Project {
   getTaskIndex(task) {
     const index = this.tasks.indexOf(task);
     return index;
-  }
-
-  addTask(title, notes, date) {
-    const newTask = new Task(title, notes, date);
-    this.tasks.push(newTask);
   }
 
   deleteTask(taskID) {

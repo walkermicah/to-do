@@ -1,8 +1,8 @@
-import { assignTaskID } from "./assignID.js";
+import { directory } from "./init.js";
 
 export class Task {
   constructor(title, notes, date) {
-    this.id = assignTaskID();
+    this.id = directory.activeProject.assignTaskID();
     this.title = title;
     this.notes = notes;
     this.date = date;
@@ -11,11 +11,26 @@ export class Task {
   complete = false;
   important = false;
 
-  toggleComplete(task) {
-    task.complete = task.complete !== true;
+  // edit title
+  editTitle(newTitle) {
+    this.title = newTitle;
   }
 
-  toggleImportant(task) {
-    task.important = task.important !== true;
+  //edit notes
+  editNotes(newNotes) {
+    this.notes = newNotes;
+  }
+
+  //edit date
+  editDate(newDate) {
+    this.date = newDate;
+  }
+
+  toggleComplete() {
+    this.complete = this.complete !== true;
+  }
+
+  toggleImportant() {
+    this.important = this.important !== true;
   }
 }

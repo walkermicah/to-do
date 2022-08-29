@@ -1,6 +1,7 @@
+// import { directory } from "./index.js";
+import { directory } from "./init.js";
 import Edit from "./img/edit.svg";
 import Delete from "./img/delete.svg";
-import { active } from "./index.js";
 
 const taskMenu = document.querySelector(".taskbar-menu");
 const taskForm = document.querySelector(".taskbar-form");
@@ -103,40 +104,38 @@ export class TaskUI {
     });
   }
 
-  //get tasks from project
-  static loadTasks(e, directory) {
-    ////////BUG HERE
+  //sets active project when a tab is clicked, then display tasks for that project
+  static changeActiveProject(e) {
     // get tasks for the project that was clicked
     const project = directory.getProjectByID(
       e.target.closest(".project-tab").dataset.id
     );
-    active.project = project;
+    directory.changeActiveProject(project);
 
     //display tasks
-    this.displayTasks(active.project);
+    this.displayTasks(directory.activeProject);
   }
 
   // TASK BUTTONS
   static markTaskComplete(e) {
-    const task = active.project.getTaskByID(
+    const task = directory.activeProject.getTaskByID(
       e.target.closest(".task").dataset.id
     );
-    task.toggleComplete(task, "complete");
+    task.toggleComplete();
   }
 
   static markTaskImportant(e) {
-    const task = active.project.getTaskByID(
+    const task = directory.activeProject.getTaskByID(
       e.target.closest(".task").dataset.id
     );
-    console.log(task);
-    task.toggleImportant(task, "important");
+    task.toggleImportant();
   }
 
   static showEditTaskForm(e) {
-    const title = active.project.getTaskByID(
+    const title = directory.activeProject.getTaskByID(
       e.target.closest(".task").dataset.id
     ).title;
-    const notes = active.project.getTaskByID(
+    const notes = directory.activeProject.getTaskByID(
       e.target.closest(".task").dataset.id
     ).notes;
 
@@ -160,7 +159,7 @@ export class TaskUI {
 
   static submitEditTask(e) {
     e.preventDefault();
-    const task = active.project.getTaskByID(
+    const task = directory.activeProject.getTaskByID(
       e.target.closest(".task").dataset.id
     );
     const title = document.querySelector(".task-edit-title").value;
@@ -168,19 +167,20 @@ export class TaskUI {
 
     if (!title) return;
 
-    task.title = title;
-    task.notes = notes;
-    this.displayTasks(active.project);
+    task.editTitle(title);
+    task.editNotes(notes);
+    //edit date here
+    this.displayTasks(directory.activeProject);
   }
 
   static exitEditTask() {
-    this.displayTasks(active.project);
+    this.displayTasks(directory.activeProject);
   }
 
   static deleteTask(e) {
     const taskID = e.target.closest(".task").dataset.id;
-    active.project.deleteTask(taskID);
-    this.displayTasks(active.project);
+    directory.activeProject.deleteTask(taskID);
+    this.displayTasks(directory.activeProject);
   }
 
   ///////////// TASKBAR
@@ -201,13 +201,13 @@ export class TaskUI {
     const notes = document.querySelector(".task-notes-input").value;
     const date = document.querySelector(".task-date-input").value;
 
-    if (!active.project) return;
+    if (!directory.activeProject) return;
     if (!title) return;
 
-    active.project.addTask(`${title}`, `${notes}`, `${date}`);
+    directory.activeProject.addTask(`${title}`, `${notes}`, `${date}`);
 
     //add task to display
-    this.displayTasks(active.project);
+    this.displayTasks(directory.activeProject);
 
     //reset form
     taskForm.reset();

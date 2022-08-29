@@ -1,7 +1,8 @@
+// import { directory } from "./index.js";
+import { directory } from "./init.js";
+import { TaskUI } from "./taskUI.js";
 import Edit from "./img/edit.svg";
 import Delete from "./img/delete.svg";
-import { TaskUI } from "./taskUI.js";
-import { active } from "./index.js";
 
 const projectBar = document.querySelector(".projects");
 const projectsMainTab = document.querySelector(".projects-main-tab");
@@ -19,7 +20,7 @@ export class ProjectUI {
   }
 
   //add color indicator to each project tab
-  static addColorCoding(directory, el, color) {
+  static addColorCoding(el, color) {
     color.classList.add("project-color");
     const projectColor = directory.getProjectByID(
       el.getAttribute("data-id")
@@ -28,14 +29,14 @@ export class ProjectUI {
   }
 
   //edit project color
-  static changeProjectColor(e, directory) {
+  static changeProjectColor(e) {
     const projectID = e.target.closest(".project-tab").dataset.id;
-    directory.editProjectColor(projectID);
-    this.loadProjects(directory);
+    directory.changeProjectColor(projectID);
+    this.loadProjects();
   }
 
   //display project tabs
-  static loadProjects(directory) {
+  static loadProjects() {
     this.clearProjects();
     directory.projects.forEach((project) => {
       //create tab
@@ -52,7 +53,7 @@ export class ProjectUI {
       tab.setAttribute("data-id", project.id);
 
       //add color coding
-      this.addColorCoding(directory, tab, color);
+      this.addColorCoding(tab, color);
 
       //append edit button to project tab
       this.appendBtn(tab, Edit, "edit-project-form-btn");
@@ -84,7 +85,7 @@ export class ProjectUI {
   }
 
   //Add new project
-  static createNewProject(e, directory) {
+  static createNewProject(e) {
     e.preventDefault();
     const projectName = newProjectName.value;
     if (!projectName) {
@@ -92,8 +93,10 @@ export class ProjectUI {
     }
     if (projectName) {
       directory.addProject(projectName);
-      active.project = directory.projects[directory.projects.length - 1];
-      this.loadProjects(directory);
+      directory.changeActiveProject(
+        directory.projects[directory.projects.length - 1]
+      );
+      this.loadProjects();
       TaskUI.clearTasks();
       newProjectForm.reset();
       this.hideNewProjectForm();
@@ -101,13 +104,10 @@ export class ProjectUI {
   }
 
   //show form to edit project name
-  static showEditProjectForm(e, directory) {
-    TaskUI.loadTasks(e, directory);
+  static showEditProjectForm(e) {
+    TaskUI.changeActiveProject(e);
 
-    const projectTitle = directory.getProjectByID(
-      e.target.closest(".project-tab").dataset.id
-    ).title;
-
+    const projectTitle = directory.activeProject.title;
     const html = `<form action="#" class="edit-project-form">
       <input
         type="text"
@@ -124,10 +124,9 @@ export class ProjectUI {
   }
 
   //edit project name
-  static editProjectName(e, directory) {
+  static editProjectName(e) {
     const input = document.querySelector(".edit-project-form-input");
     const newName = input.value;
-    const id = e.target.closest(".project-tab").dataset.id;
 
     e.preventDefault();
 
@@ -135,17 +134,17 @@ export class ProjectUI {
       return;
     }
     if (newName) {
-      directory.editProjectName(id, newName);
-      this.loadProjects(directory);
+      directory.activeProject.editTitle(newName);
+      this.loadProjects();
     }
   }
 
   //delete project
-  static deleteProject(e, directory) {
+  static deleteProject(e) {
     const id = e.target.closest(".project-tab").dataset.id;
     directory.deleteProject(id);
-    active.project = null;
-    this.loadProjects(directory);
+    directory.changeActiveProject(null);
+    this.loadProjects();
 
     TaskUI.clearTasks();
   }
