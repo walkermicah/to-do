@@ -5,8 +5,10 @@ import { TaskUI } from "./taskUI.js";
 
 ///////INITIALIZE DIRECTORY AND DEFAULT PROJECT
 const directory = new ProjectDirectory();
+directory.addProject("My Project");
 
-// directory.addProject("My Project");
+export let active = { project: directory.projects[0] };
+
 directory.addProject("Project 1");
 directory.addProject("Project 2");
 directory.addProject("Project 3");
@@ -69,11 +71,11 @@ document.addEventListener("click", function (e) {
   /////TASK BAR
   //show form to add new task
   if (e.target.classList.contains("taskbar-form-btn")) {
-    TaskUI.showNewTaskForm(directory, e);
+    TaskUI.showNewTaskForm(e);
   }
   //submit new task
   if (e.target.classList.contains("new-task-submit-btn")) {
-    TaskUI.submitNewTask(e, directory);
+    TaskUI.submitNewTask(e);
   }
   //exit form to add new task
   if (e.target.classList.contains("new-task-exit-btn")) {
@@ -82,6 +84,32 @@ document.addEventListener("click", function (e) {
   //select project from drop down
   if (e.target.closest("li")) {
     TaskUI.selectProject(e, directory);
+  }
+
+  // TASK BUTTONS
+  //mark task complete
+  if (e.target.closest(".task-checkbox-input")) {
+    TaskUI.markTaskComplete(e);
+  }
+  //mark task important
+  if (e.target.closest(".star")) {
+    TaskUI.markTaskImportant(e);
+  }
+  //edit task
+  if (e.target.classList.contains("task-edit")) {
+    TaskUI.showEditTaskForm(e);
+  }
+  //submit taks edit
+  if (e.target.classList.contains("edit-task-btn")) {
+    TaskUI.submitEditTask(e);
+  }
+  //exit edit form
+  if (e.target.classList.contains("exit-edit-task-btn")) {
+    TaskUI.exitEditTask();
+  }
+  //delete task
+  if (e.target.classList.contains("task-delete")) {
+    TaskUI.deleteTask(e);
   }
 });
 
@@ -103,6 +131,4 @@ document.addEventListener("click", function (e) {
 
 //ACCESS TASK PROPERTIES
 // directory.getProjectByID(1).getTaskByID(1).title = "New Title";
-
-// console.log(directory);
 /////////////////////////////////////////////////////////////

@@ -12,7 +12,7 @@ export class Project {
   tasks = [];
 
   getTaskByID(taskID) {
-    const task = this.tasks.find((t) => t.id === taskID);
+    const task = this.tasks.find((t) => t.id == taskID);
     return task;
   }
 

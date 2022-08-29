@@ -8,6 +8,14 @@ export class Task {
     this.date = date;
   }
 
-  important = false;
   complete = false;
+  important = false;
+
+  toggleComplete(task) {
+    task.complete = task.complete !== true;
+  }
+
+  toggleImportant(task) {
+    task.important = task.important !== true;
+  }
 }

@@ -32,8 +32,7 @@ body {
   display: grid;
   grid-template-columns: 25rem 1fr;
   grid-template-areas: "projects tasks";
-  column-gap: 4rem;
-  row-gap: 2rem;
+  column-gap: 2rem;
   cursor: default;
 }
 
@@ -157,7 +156,8 @@ input:focus {
 
 .new-project-btn,
 .submit-new-project-btn,
-.edit-project-name-btn {
+.edit-project-name-btn,
+.edit-task-btn {
   border: 1px solid white;
   border-radius: 3px;
   height: 2rem;
@@ -166,7 +166,8 @@ input:focus {
 }
 
 .new-project-exit-btn,
-.edit-project-exit-btn {
+.edit-project-exit-btn,
+.exit-edit-task-btn {
   align-self: start;
   justify-self: end;
 }
@@ -198,7 +199,7 @@ input:focus {
   font-size: 2.5rem;
   height: 100%;
   display: grid;
-  grid-template-columns: 11rem 18rem 1fr 12rem 5rem;
+  grid-template-columns: 11rem 20rem 1fr 15rem 5rem;
   align-items: center;
   justify-items: start;
   padding: 1rem;
@@ -229,7 +230,10 @@ input:focus {
 
 .task-name-input,
 .task-notes-input,
-.task-date-input {
+.task-date-input,
+.task-edit-title,
+.task-edit-notes,
+.task-edit-date {
   padding: 0.5rem;
   width: 95%;
   font-family: inherit;
@@ -272,17 +276,30 @@ input:focus {
   position: relative;
 }
 
-.task {
+.task-info,
+.task-edit-form {
   background-color: black;
   color: white;
   height: 6rem;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   padding: 1rem;
   font-size: 2rem;
 
   display: grid;
   align-items: center;
-  grid-template-columns: 5rem 5rem 18rem 1fr 12rem 2.5rem 2.5rem;
+}
+
+.task {
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.task-info {
+  grid-template-columns: 5rem 5rem 20rem 1fr 15rem 2.5rem 2.5rem;
+}
+
+.task-edit-form {
+  grid-template-columns: 1fr 2fr 1fr 2.5rem 2.5rem;
 }
 
 /* task checkbox */
@@ -358,73 +375,3 @@ input:focus {
   color: rgb(255, 246, 185);
   opacity: 1;
 }
-
-/* Project drop-down */
-
-/* .task-project-input li a {
-  text-decoration: none;
-  color: #000000;
-  font-size: 1.3rem;
-}
-
-.task-project-input nav {
-  background: #ffffff;
-}
-
-.task-project-input span {
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  background: #ffffff;
-  color: rgb(0, 0, 0);
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: block;
-}
-
-.task-project-input span::after {
-  float: right;
-  right: 10%;
-  content: "▾";
-}
-
-.slide {
-  position: relative;
-  z-index: 999;
-}
-
-.task-project-input .slide {
-  clear: both;
-  width: 100%;
-  height: 0px;
-  overflow: hidden;
-  text-align: center;
-  transition: height 0.4s ease;
-  border: 1px solid black;
-}
-
-.task-project-input .slide li {
-  padding: 2rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-items: flex-start;
-  gap: 2rem;
-}
-
-.task-project-input .slide li:hover {
-  background-color: rgb(0, 0, 0);
-}
-
-.task-project-input .slide li:hover a {
-  color: rgb(255, 255, 255);
-}
-
-#touch {
-  position: absolute;
-  opacity: 0;
-  height: 0px;
-}
-
-#touch:checked + .slide {
-  height: 10rem;
-  overflow-y: scroll;
-} */

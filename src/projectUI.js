@@ -1,6 +1,7 @@
 import Edit from "./img/edit.svg";
 import Delete from "./img/delete.svg";
 import { TaskUI } from "./taskUI.js";
+import { active } from "./index.js";
 
 const projectBar = document.querySelector(".projects");
 const projectsMainTab = document.querySelector(".projects-main-tab");
@@ -83,14 +84,17 @@ export class ProjectUI {
   }
 
   //Add new project
-  static createNewProject(directory) {
+  static createNewProject(e, directory) {
+    e.preventDefault();
     const projectName = newProjectName.value;
     if (!projectName) {
       return;
     }
     if (projectName) {
       directory.addProject(projectName);
+      active.project = directory.projects[directory.projects.length - 1];
       this.loadProjects(directory);
+      TaskUI.clearTasks();
       newProjectForm.reset();
       this.hideNewProjectForm();
     }
@@ -99,6 +103,7 @@ export class ProjectUI {
   //show form to edit project name
   static showEditProjectForm(e, directory) {
     TaskUI.loadTasks(e, directory);
+
     const projectTitle = directory.getProjectByID(
       e.target.closest(".project-tab").dataset.id
     ).title;
@@ -139,6 +144,9 @@ export class ProjectUI {
   static deleteProject(e, directory) {
     const id = e.target.closest(".project-tab").dataset.id;
     directory.deleteProject(id);
+    active.project = null;
     this.loadProjects(directory);
+
+    TaskUI.clearTasks();
   }
 }
