@@ -131,16 +131,54 @@ export class TaskUI {
     task.toggleImportant();
   }
 
-  static showEditTaskForm(e) {
-    const title = directory.activeProject.getTaskByID(
-      e.target.closest(".task").dataset.id
-    ).title;
-    const notes = directory.activeProject.getTaskByID(
-      e.target.closest(".task").dataset.id
-    ).notes;
+  //close edit form on tasks not clicked
+  static closeEditTaskForm(e) {
+    const tasks = document.querySelectorAll(".task");
+    const inactiveTasks = [];
 
-    const taskTab = e.target.closest(".task");
-    const html = `<form action="#" class="task-edit-form">
+    tasks.forEach((task) => {
+      if (task.dataset.id !== e.target.closest(".task").dataset.id) {
+        inactiveTasks.push(task);
+      }
+    });
+
+    inactiveTasks.forEach((task) => {
+      task.innerHTML = `<div class="task-info">
+      <label class="task-checkbox"
+        ><input type="checkbox" class="task-checkbox-input" /><span
+          class="checkmark"
+        ></span></label
+      ><input class="star" type="checkbox" />
+      <div class="task-title">${
+        directory.activeProject.getTaskByID(task.dataset.id).title
+      }</div>
+      <div class="task-notes">${
+        directory.activeProject.getTaskByID(task.dataset.id).notes
+      }</div>
+      <div class="task-date">${
+        directory.activeProject.getTaskByID(task.dataset.id).date
+      }</div>
+      <button>
+        <img
+          src="${Edit}"
+          class="task-edit icon-small"
+        /></button
+      ><button>
+        <img
+          src="${Delete}"
+          class="task-delete icon-small"
+        />
+      </button>
+    </div>`;
+    });
+  }
+
+  //when user clicks to edit a task, form opens on the task they clicked. if another task has a form open, close it.
+  static showEditTaskForm(e) {
+    this.closeEditTaskForm(e);
+
+    const activeTask = e.target.closest(".task");
+    activeTask.innerHTML = `<form action="#" class="task-edit-form">
     <input type="text" class="task-edit-title" placeholder="Task name" />
     <input type="text" class="task-edit-notes" placeholder="Notes" />
     <input type="date" name="date" class="task-edit-date" id="date" />
@@ -148,13 +186,15 @@ export class TaskUI {
     <button class="exit-edit-task-btn">&#10005;</button>
   </form>`;
 
-    taskTab.innerHTML = html;
-
     const titleInput = document.querySelector(".task-edit-title");
-    titleInput.value = title;
+    titleInput.value = directory.activeProject.getTaskByID(
+      activeTask.dataset.id
+    ).title;
     titleInput.focus();
     const notesInput = document.querySelector(".task-edit-notes");
-    notesInput.value = notes;
+    notesInput.value = directory.activeProject.getTaskByID(
+      activeTask.dataset.id
+    ).notes;
   }
 
   static submitEditTask(e) {

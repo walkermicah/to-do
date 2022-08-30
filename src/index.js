@@ -40,7 +40,7 @@ document.addEventListener("click", function (e) {
   }
   //show form to edit project name
   if (e.target.classList.contains("edit-project-form-btn")) {
-    ProjectUI.showEditProjectForm(e);
+    ProjectUI.clickEditProjectForm(e);
   }
   //edit project name
   if (e.target.classList.contains("edit-project-name-btn")) {

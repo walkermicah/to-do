@@ -105,22 +105,56 @@ export class ProjectUI {
 
   //show form to edit project name
   static showEditProjectForm(e) {
-    TaskUI.changeActiveProject(e);
-
-    const projectTitle = directory.activeProject.title;
     const html = `<form action="#" class="edit-project-form">
-      <input
-        type="text"
-        class="edit-project-form-input"
-      />
-      <button class="edit-project-name-btn">&plus;</button>
-      <button class="edit-project-exit-btn">&#10005;</button>
-    </form>`;
+  <input
+    type="text"
+    class="edit-project-form-input"
+  />
+  <button class="edit-project-name-btn">&plus;</button>
+  <button class="edit-project-exit-btn">&#10005;</button>
+</form>`;
     e.target.closest(".project-tab").innerHTML = html;
 
+    const projectTitle = directory.activeProject.title;
     const input = document.querySelector(".edit-project-form-input");
     input.value = projectTitle;
     input.focus();
+  }
+
+  //closes edit project form when another one is opened
+  static closeEditProjectForm(tab) {
+    const projectName = directory.getProjectByID(tab.dataset.id).title;
+    const projectColor = directory.getProjectByID(tab.dataset.id).color;
+
+    const html = `  <div class="project-color" style="background-color: ${projectColor}"></div>
+        <div class="project-name">${projectName}</div>
+        <button>
+          <img
+            src="${Edit}"
+            class="edit-project-form-btn icon-small"
+          /></button
+        ><button>
+          <img
+            src="${Delete}"
+            class="delete-project-btn icon-small"
+          />
+        </button>`;
+    tab.innerHTML = html;
+  }
+
+  //when user clicks to edit a project name, only show the form for the project clicked. if another form is open, close it.
+  static clickEditProjectForm(e) {
+    TaskUI.changeActiveProject(e);
+
+    const projectTabs = document.querySelectorAll(".project-tab");
+
+    projectTabs.forEach((tab) => {
+      if (tab.dataset.id == directory.activeProject.id) {
+        this.showEditProjectForm(e);
+      } else {
+        this.closeEditProjectForm(tab);
+      }
+    });
   }
 
   //edit project name
