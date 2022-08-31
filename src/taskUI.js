@@ -1,7 +1,7 @@
 // import { directory } from "./index.js";
 import { directory } from "./init.js";
-import Edit from "./img/edit.svg";
-import Delete from "./img/delete.svg";
+import Edit from "./img/edit-black.svg";
+import Delete from "./img/delete-black.svg";
 
 const taskMenu = document.querySelector(".taskbar-menu");
 const taskForm = document.querySelector(".taskbar-form");

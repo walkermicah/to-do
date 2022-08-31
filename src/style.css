@@ -7,8 +7,11 @@
 }
 
 :root {
-  --main-color: rgb(255, 255, 255);
-  --background-color: rgb(0, 0, 0);
+  --background-color: rgb(199, 198, 200);
+  --menu-color: rgb(0, 0, 0);
+  --project-color: rgb(0, 0, 0);
+  --task-color: rgb(255, 255, 255);
+  --section-background-color: rgb(227, 225, 229);
 }
 
 html {
@@ -24,6 +27,7 @@ body {
   height: 100vh;
   display: grid;
   place-items: center;
+  background-color: black;
 }
 
 .app {
@@ -32,14 +36,18 @@ body {
   display: grid;
   grid-template-columns: 25rem 1fr;
   grid-template-areas: "projects tasks";
-  column-gap: 2rem;
+  column-gap: 1rem;
   cursor: default;
+  background-color: var(--background-color);
+  padding: 1rem;
+  overflow-y: scroll;
+  border-bottom: 1rem solid var(--background-color);
 }
 
 button {
   border-style: none;
   color: white;
-  background-color: black;
+  background-color: transparent;
   cursor: pointer;
 }
 
@@ -79,12 +87,12 @@ input:focus {
 
 /* PROJECTS */
 .projects-bar {
-  background-color: rgb(255, 255, 255);
   font-size: 2rem;
   grid-area: projects;
 
   display: grid;
-  gap: 2rem;
+  grid-template-rows: 4.5rem 1fr;
+  gap: 1rem;
   align-content: start;
 
   max-height: 85vh;
@@ -92,40 +100,48 @@ input:focus {
 
 .projects {
   display: grid;
-  gap: 1rem;
   align-content: start;
 
   overflow-y: scroll;
+  background-color: var(--section-background-color);
 }
 
 .projects-main-tab {
   display: flex;
   align-items: center;
-  justify-content: space-around;
   gap: 3rem;
+  width: 100%;
 }
 
 .projects-heading {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .project-tab,
 .project-header {
-  height: 6rem;
-  width: 25rem;
-  border-radius: 3px;
-  padding: 1rem;
   color: white;
-  background-color: black;
+  width: 25rem;
+  padding: 1rem;
 
   display: flex;
   align-items: center;
   gap: 1rem;
-  justify-content: space-between;
+}
+
+.project-header {
+  height: 4.5rem;
+  width: 100%;
+  background-color: var(--menu-color);
+}
+
+.project-tab {
+  background-color: var(--project-color);
+  height: 6rem;
+  border-bottom: 1px solid var(--background-color);
 }
 
 .project-color {
@@ -165,11 +181,24 @@ input:focus {
   align-self: center;
 }
 
+.edit-task-btn {
+  color: #000;
+  border: 1px solid black;
+}
+
+.new-project-btn {
+  margin-left: auto;
+}
+
 .new-project-exit-btn,
 .edit-project-exit-btn,
 .exit-edit-task-btn {
   align-self: start;
   justify-self: end;
+}
+
+.exit-edit-task-btn {
+  color: #000;
 }
 
 /* TASK BAR */
@@ -178,8 +207,8 @@ input:focus {
   position: relative;
 
   display: grid;
-  grid-template-rows: 6rem min-content;
-  gap: 2rem;
+  grid-template-rows: 4.5rem 1fr;
+  gap: 1rem;
 
   max-height: 85vh;
   overflow-y: scroll;
@@ -187,19 +216,19 @@ input:focus {
 
 .taskbar {
   width: 100%;
-  background-color: black;
+  background-color: var(--menu-color);
   color: white;
-  border-radius: 3px;
   position: sticky;
   top: 0;
   z-index: 999;
 }
 
 .taskbar-menu {
-  font-size: 2.5rem;
+  font-size: 2rem;
   height: 100%;
   display: grid;
   grid-template-columns: 11rem 20rem 1fr 15rem 5rem;
+  align-content: center;
   align-items: center;
   justify-items: start;
   padding: 1rem;
@@ -209,9 +238,11 @@ input:focus {
 .new-task-submit-btn {
   border: 1px solid white;
   border-radius: 3px;
-  height: 4rem;
-  width: 4rem;
+  height: 3rem;
+  width: 3rem;
   font-size: 3rem;
+  display: grid;
+  place-content: center;
 }
 
 .taskbar-title {
@@ -220,11 +251,11 @@ input:focus {
 }
 
 .taskbar-form {
-  padding: 1rem;
+  padding: 0rem 1rem;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr min-content min-content;
-  justify-items: center;
+  grid-template-columns: 15rem 25rem 15rem 1fr min-content;
+  align-content: center;
   gap: 1rem;
 }
 
@@ -243,7 +274,8 @@ input:focus {
 }
 
 .new-task-submit-btn {
-  align-self: start;
+  justify-self: center;
+  align-self: center;
 }
 
 .new-task-exit-btn {
@@ -271,27 +303,21 @@ input:focus {
 /* TASK LIST */
 .tasklist {
   display: grid;
-  gap: 1rem;
   align-content: start;
   position: relative;
+  gap: 1px;
+  background-color: var(--section-background-color);
 }
 
 .task-info,
 .task-edit-form {
-  background-color: black;
-  color: white;
+  background-color: var(--task-color);
   height: 6rem;
-  /* border-radius: 3px; */
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 
   display: grid;
   align-items: center;
-}
-
-.task {
-  border-radius: 3px;
-  overflow: hidden;
 }
 
 .task-info {
@@ -300,6 +326,12 @@ input:focus {
 
 .task-edit-form {
   grid-template-columns: 1fr 2fr 1fr 2.5rem 2.5rem;
+}
+
+.task-edit-title,
+.task-edit-notes,
+.task-edit-date {
+  border: 1px solid black;
 }
 
 /* task checkbox */
@@ -320,12 +352,12 @@ input:focus {
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: rgb(0, 0, 0);
-  border: 1px solid white;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
 }
 
 .task-checkbox:hover input ~ .checkmark {
-  background-color: rgb(41, 40, 40);
+  background-color: rgb(234, 230, 230);
 }
 
 .task-checkbox input:checked ~ .checkmark {
@@ -366,12 +398,12 @@ input:focus {
   visibility: visible;
   content: "\2606";
   position: absolute;
-  color: rgb(255, 255, 255);
+  color: rgb(250, 209, 60);
   opacity: 0.7;
 }
 .star:checked:before {
   content: "\2605";
   position: absolute;
-  color: rgb(255, 246, 185);
+  color: rgb(250, 209, 60);
   opacity: 1;
 }
