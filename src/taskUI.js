@@ -2,6 +2,7 @@
 import { directory } from "./init.js";
 import Edit from "./img/edit-black.svg";
 import Delete from "./img/delete-black.svg";
+import format from "date-fns/format";
 
 const taskMenu = document.querySelector(".taskbar-menu");
 const taskForm = document.querySelector(".taskbar-form");
@@ -63,7 +64,10 @@ export class TaskUI {
   static appendDate(el, date) {
     const div = el.appendChild(document.createElement("div"));
     div.classList.add("task-date");
-    div.textContent = date;
+    if (date) {
+      // const doo = new Date(`${date} EDT`);
+      div.textContent = format(new Date(`${date} EDT`), "MMM d, yyyy");
+    }
   }
 
   //append delete button to task
@@ -195,6 +199,10 @@ export class TaskUI {
     notesInput.value = directory.activeProject.getTaskByID(
       activeTask.dataset.id
     ).notes;
+    const dateInput = document.querySelector(".task-edit-date");
+    dateInput.value = directory.activeProject.getTaskByID(
+      activeTask.dataset.id
+    ).date;
   }
 
   static submitEditTask(e) {
@@ -204,12 +212,13 @@ export class TaskUI {
     );
     const title = document.querySelector(".task-edit-title").value;
     const notes = document.querySelector(".task-edit-notes").value;
+    const date = document.querySelector(".task-edit-date").value;
 
     if (!title) return;
 
     task.editTitle(title);
     task.editNotes(notes);
-    //edit date here
+    task.editDate(date);
     this.displayTasks(directory.activeProject);
   }
 
