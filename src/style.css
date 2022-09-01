@@ -9,8 +9,7 @@
 :root {
   --background-color: rgb(199, 198, 200);
   --menu-color: rgb(0, 0, 0);
-  --project-color: rgb(0, 0, 0);
-  --task-color: rgb(255, 255, 255);
+  --tab-color: rgb(255, 255, 255);
   --section-background-color: rgb(227, 225, 229);
 }
 
@@ -123,7 +122,6 @@ input:focus {
 
 .project-tab,
 .project-header {
-  color: white;
   width: 25rem;
   padding: 1rem;
 
@@ -133,13 +131,14 @@ input:focus {
 }
 
 .project-header {
+  color: white;
   height: 4.5rem;
   width: 100%;
   background-color: var(--menu-color);
 }
 
 .project-tab {
-  background-color: var(--project-color);
+  background-color: var(--tab-color);
   height: 6rem;
   border-bottom: 1px solid var(--background-color);
 }
@@ -181,7 +180,8 @@ input:focus {
   align-self: center;
 }
 
-.edit-task-btn {
+.edit-task-btn,
+.edit-project-name-btn {
   color: #000;
   border: 1px solid black;
 }
@@ -197,7 +197,8 @@ input:focus {
   justify-self: end;
 }
 
-.exit-edit-task-btn {
+.exit-edit-task-btn,
+.edit-project-exit-btn {
   color: #000;
 }
 
@@ -311,7 +312,7 @@ input:focus {
 
 .task-info,
 .task-edit-form {
-  background-color: var(--task-color);
+  background-color: var(--tab-color);
   height: 6rem;
   padding: 1rem;
   font-size: 1.5rem;
@@ -330,7 +331,8 @@ input:focus {
 
 .task-edit-title,
 .task-edit-notes,
-.task-edit-date {
+.task-edit-date,
+.edit-project-form-input {
   border: 1px solid black;
 }
 

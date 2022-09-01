@@ -1,8 +1,8 @@
 // import { directory } from "./index.js";
 import { directory } from "./init.js";
 import { TaskUI } from "./taskUI.js";
-import Edit from "./img/edit-white.svg";
-import Delete from "./img/delete-white.svg";
+import Edit from "./img/edit-black.svg";
+import Delete from "./img/delete-black.svg";
 
 const projectBar = document.querySelector(".projects");
 const projectsMainTab = document.querySelector(".projects-main-tab");
