@@ -30,8 +30,10 @@ export class ProjectUI {
 
   //edit project color
   static changeProjectColor(e) {
-    const projectID = e.target.closest(".project-tab").dataset.id;
-    directory.changeProjectColor(projectID);
+    const project = directory.getProjectByID(
+      e.target.closest(".project-tab").dataset.id
+    );
+    project.changeProjectColor();
     this.loadProjects();
   }
 
@@ -91,16 +93,15 @@ export class ProjectUI {
     if (!projectName) {
       return;
     }
-    if (projectName) {
-      directory.addProject(projectName);
-      directory.changeActiveProject(
-        directory.projects[directory.projects.length - 1]
-      );
-      this.loadProjects();
-      TaskUI.clearTasks();
-      newProjectForm.reset();
-      this.hideNewProjectForm();
-    }
+
+    directory.addProject(projectName, directory.assignProjectColor());
+    directory.changeActiveProject(
+      directory.projects[directory.projects.length - 1]
+    );
+    this.loadProjects();
+    TaskUI.clearTasks();
+    newProjectForm.reset();
+    this.hideNewProjectForm();
   }
 
   //show form to edit project name
@@ -177,7 +178,7 @@ export class ProjectUI {
   static deleteProject(e) {
     const id = e.target.closest(".project-tab").dataset.id;
     directory.deleteProject(id);
-    directory.changeActiveProject(null);
+    directory.changeActiveProject(undefined);
     this.loadProjects();
 
     TaskUI.clearTasks();

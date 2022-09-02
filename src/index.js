@@ -7,20 +7,20 @@ import { TaskUI } from "./taskUI.js";
 init();
 
 //for testing
-directory.addProject("Project 1");
-directory.addProject("Project 2");
-directory.addProject("Project 3");
-directory.addProject("Project 4");
-directory.addProject("Project 5");
-directory.addProject("Project 6");
-directory.getProjectByID(1).addTask("Task 1", "Note 1", "09/23/22");
-directory.getProjectByID(1).addTask("Task 2", "Note 2", "09/25/22");
-directory.getProjectByID(2).addTask("New Task", "Notes", "10/30/22");
-directory.getProjectByID(3).addTask("Task A", "Note A...", "01/01/23");
-directory.getProjectByID(3).addTask("Task B", "Note B...", "01/22/23");
-directory.getProjectByID(4).addTask("Task B", "Note B...", "01/22/23");
-directory.getProjectByID(5).addTask("Task B", "Note B...", "01/22/23");
-directory.getProjectByID(6).addTask("Task B", "Note B...", "01/22/23");
+// directory.addProject("Project 1");
+// directory.addProject("Project 2");
+// directory.addProject("Project 3");
+// directory.addProject("Project 4");
+// directory.addProject("Project 5");
+// directory.addProject("Project 6");
+// directory.getProjectByID(1).addTask("Task 1", "Note 1", "09/23/22");
+// directory.getProjectByID(1).addTask("Task 2", "Note 2", "09/25/22");
+// directory.getProjectByID(2).addTask("New Task", "Notes", "10/30/22");
+// directory.getProjectByID(3).addTask("Task A", "Note A...", "01/01/23");
+// directory.getProjectByID(3).addTask("Task B", "Note B...", "01/22/23");
+// directory.getProjectByID(4).addTask("Task B", "Note B...", "01/22/23");
+// directory.getProjectByID(5).addTask("Task B", "Note B...", "01/22/23");
+// directory.getProjectByID(6).addTask("Task B", "Note B...", "01/22/23");
 ProjectUI.loadProjects(directory);
 
 ///////EVENT LISTENERS

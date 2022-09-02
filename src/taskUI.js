@@ -253,10 +253,17 @@ export class TaskUI {
     if (!directory.activeProject) return;
     if (!title) return;
 
-    directory.activeProject.addTask(`${title}`, `${notes}`, `${date}`);
+    directory.activeProject.addTask(
+      `${title}`,
+      `${notes}`,
+      `${date}`,
+      false,
+      false
+    );
 
     //add task to display
     this.displayTasks(directory.activeProject);
+    console.log(directory.activeProject);
 
     //reset form
     taskForm.reset();
